@@ -13,7 +13,7 @@ trigger:
 variables: 
   home: $(System.DefaultWorkingDirectory) 
 pool: 
-  vmImage: ubuntu-latest
+  vmImage: myAgentPool
 
 jobs:
 - job: PreWork
