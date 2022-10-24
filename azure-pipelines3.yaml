@@ -1,7 +1,6 @@
 name: azure pipeline
 pool:
   name: myAgentPool
-  vmImage: 'myLinuxVM'
 
 
 
