@@ -161,7 +161,7 @@ stages:
             displayName: 'Deploy Azure Web App'
             inputs:
               appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
-              azureSubscription: QA_udacity_final_project #este es el service conecction que se crea en azure devops
+              azureSubscription: service_connection #este es el service conecction que se crea en azure devops
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
