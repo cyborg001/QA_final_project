@@ -14,7 +14,7 @@ stages:
     steps:
 
     - task: DownloadSecureFile@1
-      name: myPubKey
+      name: mypubKey
       displayName: 'Download ssh keys'
       inputs:
         secureFile: 'id_rsa.pub'
@@ -45,7 +45,7 @@ stages:
     - task: InstallSSHKey@0
       inputs:
         knownHostsEntry: '$(knowHost)'
-        sshPublicKey: '$(myPubKey)'
+        sshPublicKey: '$(mypubKey)'
         sshKeySecureFile: 'myKey' # ojo para que funcione este archivo debe ser anadido a la libreria como secure file en el portal de azure devops
 
 
