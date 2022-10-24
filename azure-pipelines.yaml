@@ -11,7 +11,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'myAgentPool'
     steps:
 
     # - task: DownloadSecureFile@1
