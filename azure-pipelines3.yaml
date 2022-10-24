@@ -1,26 +1,26 @@
-# name: azure pipeline
-# pool:
-#   vmImage: 'ubuntu-latest'
-# steps:
-# - task: Bash@3
-#   inputs: 
-#     script: |
-#       #!/bin/bash
-#       echo hola mundo
-#       echo $(System.DefaultWorkingDirectory)
-trigger:
-  - main
-variables: 
-  home: $(System.DefaultWorkingDirectory) 
-pool: myAgentPool
+name: azure pipeline
+pool:
+  vmImage: 'myLinuxVM'
+steps:
+- task: Bash@3
+  inputs: 
+    script: |
+      #!/bin/bash
+      echo hola mundo
+      echo $(System.DefaultWorkingDirectory)
+# trigger:
+#   - main
+# variables: 
+#   home: $(System.DefaultWorkingDirectory) 
+# pool: myAgentPool
 
-jobs:
-- job: PreWork
-  steps:
-  - task: CmdLine@2
-    inputs:
-      script: |
-        echo $(System.DefaultWorkingDirectory)
+# jobs:
+# - job: PreWork
+#   steps:
+#   - task: CmdLine@2
+#     inputs:
+#       script: |
+#         echo $(System.DefaultWorkingDirectory)
         
   - task: PublishTestResults@2 
     displayName: Publicar los resultados
