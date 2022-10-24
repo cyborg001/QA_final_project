@@ -1,12 +1,11 @@
 name: azure pipeline
 pool: myAgentPool
 
-
-
-script: |
-  #!/bin/bash
-  echo hola mundo
-  echo $(System.DefaultWorkingDirectory)
+steps:
+- script: |
+    #!/bin/bash
+    echo hola mundo
+    echo $(System.DefaultWorkingDirectory)
 # trigger:
 #   - main
 # variables: 
