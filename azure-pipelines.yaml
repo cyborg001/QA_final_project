@@ -10,8 +10,7 @@ stages:
 - stage: Build
   jobs:
   - job: Build
-    pool: 
-      vmImage: 'myLinuxVM'
+    pool: myAgentPool
     steps:
 
     # - task: DownloadSecureFile@1
