@@ -1,6 +1,6 @@
 name: azure pipeline
 pool:
-  vmImage: 'myLinuxVM'
+  vmImage: 'myAgentPool'
 steps:
 jobs:
   - task: Bash@3
