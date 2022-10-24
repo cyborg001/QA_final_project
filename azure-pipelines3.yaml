@@ -2,12 +2,13 @@ name: azure pipeline
 pool:
   vmImage: 'myLinuxVM'
 steps:
-- task: Bash@3
-  inputs: 
-    script: |
-      #!/bin/bash
-      echo hola mundo
-      echo $(System.DefaultWorkingDirectory)
+jobs:
+  - task: Bash@3
+    inputs: 
+      script: |
+        #!/bin/bash
+        echo hola mundo
+        echo $(System.DefaultWorkingDirectory)
 # trigger:
 #   - main
 # variables: 
