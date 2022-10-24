@@ -150,8 +150,7 @@ stages:
   
   - deployment: FakeRestAPI
     
-    pool:
-      vmImage: myLinuxVM
+    pool: myAgentPool
     environment: 'TEST'
     strategy:
       runOnce:
