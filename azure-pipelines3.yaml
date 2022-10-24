@@ -4,11 +4,11 @@ pool:
   vmImage: 'myLinuxVM'
 
 
-inputs: 
-  script: |
-    #!/bin/bash
-    echo hola mundo
-    echo $(System.DefaultWorkingDirectory)
+
+script: |
+  #!/bin/bash
+  echo hola mundo
+  echo $(System.DefaultWorkingDirectory)
 # trigger:
 #   - main
 # variables: 
