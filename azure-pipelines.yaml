@@ -151,7 +151,7 @@ stages:
   - deployment: FakeRestAPI
     
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: myLinuxVM
     environment: 'TEST'
     strategy:
       runOnce:
