@@ -1,2 +1,1 @@
-# QA_final_project
-projecto final de udacity
+# proyecto_final_udacity
