@@ -1,8 +1,8 @@
 # Azure subscription vars
-subscription_id = "36491b3a-5694-4b8a-afdd-7fa1b43ec1de"
-client_id = "0c1b077b-9b83-41cb-adb1-9242c8861c2a"
-client_secret = "vXX8Q~s8x.50CocfP3KI3u3d.xSyWjwFkEgZ-b-O"
-tenant_id = "f92db005-d439-4679-8f10-9c6347771680"
+subscription_id = "630a1e98-7922-4c13-9488-39768dd9328d"
+client_id = "6f4f8ea8-73e4-4960-9573-a0912dd79c3d"
+client_secret = "83j8Q~YeJXFQ-rzSSulj65GcgimF-nLs4U03cdnl"
+tenant_id = "f958e84a-92b8-439f-a62d-4f45996b6d07"
 
 # con el sigt command: az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/1e4e092c-b55e-45ea-8cc8-4e0ef3f7f19c"
 # ojo para poder crear otro resource group con esas credenciales el del service principel scope debe ser hasta suscriptions
@@ -10,7 +10,7 @@ tenant_id = "f92db005-d439-4679-8f10-9c6347771680"
 
 # Resource Group/Location
 location = "eastus"
-resource_group = "rg"
+resource_group = "Azuredevops"
 application_type = "app5carlos"
 
 # Network
@@ -21,7 +21,7 @@ address_prefixes = ["10.5.1.0/24"]
 
 # Ssh key
 username = "carlos"
-key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJGbSpSfCBtCtU+QP7gslpfnWsPRxzEInjMa8NOhxXsKD4fbT5YD3FpQE7YW8JB9uigIR3Q+ixuZMDVfsITuag3A3f4Sp6QRiCHhG5f9RDJdDnGv85u3l0uJBmQ5Soe5ezCsbtffk+ZRgNLdDdE/0L6YD6AB7PTi7OTIYamADn4Rvt0wTcruFcODA7gDrm5aFz72kLfuJ3i8zBDj4Rn+r444auEGuk8nEbJ0Ir/xmytiDgLWO5Pw651BHal/YElpLovlGZMyYecs3b1BRBzgvPyYl+EJ+rvTOIxcbtsvRhYmWe99u+QhqC/aBwW3hlMoyd3D/JQsiRaWFVp8EzWF8qdSmrKqAK//qDgd4lCBpD156Xk9dbmNOlDCvejKMEvXyNLEFd6/p8b13E9z2AKLzdkIYnFD2H9YV3SNGaMpwsBLGAaTD+0Ovs456Vjh8GA9Jngiww59xOhq6w+8pacrb07qQKy2uZx9k/hfj5YMVCGVEtwHQV0FblKL5Jr8I0AYs= dell@DESKTOP-2K7VTTJ"
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQClx2HzCbXNGawApWIUtsQY81jv+Afn3EyrW3ngR8tQD2xYGCCgHf9oWACalprwxaLqiCZAa4NfEMNtxyN6SuHSKIYlYSd8tRWv9xAuF+9I92N9jstQh8UTBo15TTvo1fD0nvTU02f2Xw4PTPNHqUtQQL597vFHSI2AOCVsRQxhvZJ59kwU7UyyWQxFU5ymwwvuiy7bIv9X7q6jXEFeIIWU1+m6hAfYuqfJjg1nNxB2+FC9qHKaGqvWziDfWLv4AV4h7KqS8Xrr/HUzYWd03bV+7U3F+gDX53qtefzhGoND/ChEWFvCcA+OjhHAj2LiIDXyS1d8z7ckkMySZsoxfjBxDnA7KGjv/LMvclL157GK+Hls+FwtcPQ+6U5B5Let6axJ13/vvkzZQwTeF/2QFMoPMgYp38kXYJweystm6hnLp50B9mJ0XZMTrosU6oPJ9u/UV+3ar/HZklLYYnYiHTcykNxHRKM1bTDOZwYWhunMA16M0ezEL7qNT23abLndfQrN+ISuKzPZSpaGZmeFv69jxGN07bPg/eckNR7Aknu4BjsDx3qhQSez2uInByEBSp1yauwdujnckVQClFKDUsKQPeHE0jpAQyoxxPjR3mJutx0Sbj+bi5N7Nz/xDj/8wI2s07NJLg8+Hf48r9G4xcZsvAqHOZgmVaJiXmE1JOvZEQ== carlos@brendita"
 
 #image
-image_id = "/subscriptions/36491b3a-5694-4b8a-afdd-7fa1b43ec1de/resourceGroups/NetworkWatcherRG/providers/Microsoft.Compute/images/carlos-image"
+image_id = "/subscriptions/630a1e98-7922-4c13-9488-39768dd9328d/resourceGroups/Azuredevops/providers/Microsoft.Compute/images/myImage"

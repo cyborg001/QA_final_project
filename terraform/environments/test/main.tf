@@ -9,18 +9,18 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     # use_microsoft_graph  = "false"
-    storage_account_name = "tfstate29547"
+    storage_account_name = "tfstate711"
     container_name       = "tfstate"
     key                  = "key1"
-    access_key           = "/UAsc5ABqk1oEUKOVPLubL3KBKR6XL5Vg8vwN5ajTBo62mMmPn2z9eTte2twaNiZGjal0ugLIS54+ASthMk55A=="
+    access_key           = "ula9B9Q18+tNzzVLNijJ8CexAxO3bZFU8eb2hmfalLDFDpRGsUIJIkBy2dhhhW5alGSpt2UbuPBA+AStzZw2sQ=="
     
   }
 }
-module "resource_group" {
-  source               = "../../modules/resource_group"
-  resource_group       = "${var.resource_group}"
-  location             = "${var.location}"
-}
+# module "resource_group" {
+#   source               = "../../modules/resource_group"
+#   resource_group       = "${var.resource_group}"
+#   location             = "${var.location}"
+# }
 module "network" {
   source               = "../../modules/network"
   address_space        = "${var.address_space}"
@@ -28,7 +28,7 @@ module "network" {
   virtual_network_name = "${var.virtual_network_name}"
   application_type     = "${var.application_type}"
   resource_type        = "NET"
-  resource_group       = "${module.resource_group.resource_group_name}"
+  resource_group       = "${var.resource_group}"
   address_prefix_test  = "${var.address_prefix_test}"
   address_prefixes     = "${var.address_prefixes}"
 }
@@ -38,7 +38,7 @@ module "nsg-test" {
   location         = "${var.location}"
   application_type = "${var.application_type}"
   resource_type    = "NSG"
-  resource_group   = "${module.resource_group.resource_group_name}"
+  resource_group   = "${var.resource_group}"
   subnet_id        = "${module.network.subnet_id_test}"
   address_prefix_test = "${var.address_prefix_test}"
 }
@@ -47,20 +47,20 @@ module "appservice" {
   location         = "${var.location}"
   application_type = "${var.application_type}"
   resource_type    = "AppService"
-  resource_group   = "${module.resource_group.resource_group_name}"
+  resource_group   = "${var.resource_group}"
 }
 module "publicip" {
   source           = "../../modules/publicip"
   location         = "${var.location}"
   application_type = "${var.application_type}"
   resource_type    = "publicip"
-  resource_group   = "${module.resource_group.resource_group_name}"
+  resource_group   = "${var.resource_group}"
 }
 
 module "vm" {
   source                = "../../modules/vm"
   location              = "${var.location}"
-  resource_group        = "${module.resource_group.resource_group_name}"
+  resource_group        = "${var.resource_group}"
   application_type      = "${var.application_type}"
   resource_type         = "VirtualMachine"
   subnet_id             = "${module.network.subnet_id_test}"
