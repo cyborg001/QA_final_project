@@ -1,6 +1,6 @@
 name: Azure Pipelines
 variables:
-- group: grupo_variables
+- group: variables
 - name: python.version
   value: '3.7.6'
 - name: appname
@@ -150,7 +150,8 @@ stages:
   
   - deployment: FakeRestAPI
     
-    pool: myAgentPool
+    pool: 
+      name: myLinuxVM
     environment: 'TEST'
     strategy:
       runOnce:
