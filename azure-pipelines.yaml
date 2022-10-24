@@ -13,11 +13,11 @@ stages:
     pool: myAgentPool
     steps:
 
-    # - task: DownloadSecureFile@1
-    #   name: myPubKey
-    #   displayName: 'Download ssh keys'
-    #   inputs:
-    #     secureFile: 'mykeys.pub'
+    - task: DownloadSecureFile@1
+      name: myPubKey
+      displayName: 'Download ssh keys'
+      inputs:
+        secureFile: 'id_rsa.pub'
 
     - task: Bash@3
       displayName: Installing Terraform
@@ -37,10 +37,10 @@ stages:
 
    
     
-#     # - task: CmdLine@2
-#     #   inputs:
-#     #     script: |
-#     #       echo '$(mypubkey)'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          echo '$(mypubkey)'
 
     - task: InstallSSHKey@0
       inputs:
@@ -151,7 +151,7 @@ stages:
   - deployment: FakeRestAPI
     
     pool: 
-      name: myLinuxVM
+      name: myAgentPool
     environment: 'TEST'
     strategy:
       runOnce:
