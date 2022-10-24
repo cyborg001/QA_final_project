@@ -31,6 +31,6 @@ script: |
   #     #mergeTestResults: false # Optional
   #     #failTaskOnFailedTests: false # Optional
   #     testRunTitle: Postman Test
-      buildPlatform: # Optional
+      # buildPlatform: # Optional
     #buildConfiguration: # Optional
     #publishRunAttachments: true # Optional
