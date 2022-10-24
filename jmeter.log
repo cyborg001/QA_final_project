@@ -1,0 +1,20 @@
+2022-10-17 17:16:16,582 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2022-10-17 17:16:16,611 INFO o.a.j.JMeter: Loading user properties from: C:\apache-jmeter-5.5\apache-jmeter-5.5\bin\user.properties
+2022-10-17 17:16:16,616 INFO o.a.j.JMeter: Loading system properties from: C:\apache-jmeter-5.5\apache-jmeter-5.5\bin\system.properties
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: Copyright (c) 1998-2022 The Apache Software Foundation
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: Version 5.5
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: java.version=18
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: os.name=Windows 11
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: os.arch=amd64
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: os.version=10.0
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: file.encoding=UTF-8
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: java.awt.headless=null
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: Max memory     =1073741824
+2022-10-17 17:16:16,624 INFO o.a.j.JMeter: Available Processors =8
+2022-10-17 17:16:16,633 INFO o.a.j.JMeter: Default Locale=English (EN)
+2022-10-17 17:16:16,634 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2022-10-17 17:16:16,634 INFO o.a.j.JMeter: JMeterHome=C:\apache-jmeter-5.5\apache-jmeter-5.5
+2022-10-17 17:16:16,634 INFO o.a.j.JMeter: user.dir  =C:\Users\DELL\projects\proyecto_final_udacity
+2022-10-17 17:16:16,634 INFO o.a.j.JMeter: PWD       =C:\Users\DELL\projects\proyecto_final_udacity
+2022-10-17 17:16:16,638 INFO o.a.j.JMeter: IP: 192.168.0.105 Name: DESKTOP-2K7VTTJ FullName: DESKTOP-2K7VTTJ

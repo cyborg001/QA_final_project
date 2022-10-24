@@ -1,0 +1,37 @@
+# name: azure pipeline
+# pool:
+#   vmImage: 'ubuntu-latest'
+# steps:
+# - task: Bash@3
+#   inputs: 
+#     script: |
+#       #!/bin/bash
+#       echo hola mundo
+#       echo $(System.DefaultWorkingDirectory)
+trigger:
+  - main
+variables: 
+  home: $(System.DefaultWorkingDirectory) 
+pool: 
+  vmImage: ubuntu-latest
+
+jobs:
+- job: PreWork
+  steps:
+  - task: CmdLine@2
+    inputs:
+      script: |
+        echo $(System.DefaultWorkingDirectory)
+        
+  - task: PublishTestResults@2 
+    displayName: Publicar los resultados
+    inputs:
+      testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+      testResultsFiles: '**/*.xml' 
+      searchFolder: '$(home)/automatedtesting/postman/'
+      #mergeTestResults: false # Optional
+      #failTaskOnFailedTests: false # Optional
+      testRunTitle: Postman Test
+      buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    #publishRunAttachments: true # Optional
