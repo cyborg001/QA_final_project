@@ -19,18 +19,18 @@ stages:
     #   inputs:
     #     secureFile: 'id_rsa'
 
-    - task: Bash@3
-      displayName: Installing Terraform
-      inputs:
-        targetType: 'inline'
-        script: |
-          #!/bin/bash
-          echo 'Instalando Terraform'
-          sudo snap install terraform --classic
-          cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
-          echo '$(System.DefaultWorkingDirectory)'
-          terraform init && terraform plan -out=myplan
-          terraform apply myplan
+    # - task: Bash@3
+    #   displayName: Installing Terraform
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       #!/bin/bash
+    #       echo 'Instalando Terraform'
+    #       sudo snap install terraform --classic
+    #       cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
+    #       echo '$(System.DefaultWorkingDirectory)'
+    #       terraform init && terraform plan -out=myplan
+    #       terraform apply myplan
 #         #  -auto-approve
 #         # -auto-approve permite que el pipeline se ejecute sin interaccion
 
@@ -143,27 +143,27 @@ stages:
       artifact: drop-postman-test-suite-art
     
 
-- stage: FakeRestAPI
-  dependsOn: Build
-  condition: succeededOrFailed()
-  jobs:
+# - stage: FakeRestAPI
+#   dependsOn: Build
+#   condition: succeededOrFailed()
+#   jobs:
   
-  - deployment: FakeRestAPI
+#   - deployment: FakeRestAPI
     
-    pool: 
-      name: myAgentPool
-    environment: 'TEST'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App'
-            inputs:
-              appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
-              azureSubscription: service_connection #este es el service conecction que se crea en azure devops
-              appType: webApp
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+#     pool: 
+#       name: myAgentPool
+#     environment: 'TEST'
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: AzureWebApp@1
+#             displayName: 'Deploy Azure Web App'
+#             inputs:
+#               appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
+#               azureSubscription: service_connection #este es el service conecction que se crea en azure devops
+#               appType: webApp
+#               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
 
 
@@ -185,115 +185,115 @@ stages:
   #             appType: webApp
   #             package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
-  - deployment: VMDeploy
-    displayName: deploy to virtual machine
-    environment:
-      name: TEST
-      resourceType: VirtualMachine
-      tags: test
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: Bash@3
-            displayName: Jmeter Test
-            inputs:
-              targetType: 'inline'
-              script: |
-                #! /bin/bash
-                sudo apt-get upgrade -y
-                sudo add-apt-repository universe
-                sudo apt-get update
-                sudo apt-get install unzip -y
-                sudo apt install default-jre -y
-                cd ~/azagent/_work/1/drop-jmeter-test-suite-art
-                echo 'imprimimos el directorio actual'
-                pwd
-                unzip -o $(Build.BuildId)-jmeter-art.zip
+#   - deployment: VMDeploy
+#     displayName: deploy to virtual machine
+#     environment:
+#       name: TEST
+#       resourceType: VirtualMachine
+#       tags: test
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: Bash@3
+#             displayName: Jmeter Test
+#             inputs:
+#               targetType: 'inline'
+#               script: |
+#                 #! /bin/bash
+#                 sudo apt-get upgrade -y
+#                 sudo add-apt-repository universe
+#                 sudo apt-get update
+#                 sudo apt-get install unzip -y
+#                 sudo apt install default-jre -y
+#                 cd ~/azagent/_work/1/drop-jmeter-test-suite-art
+#                 echo 'imprimimos el directorio actual'
+#                 pwd
+#                 unzip -o $(Build.BuildId)-jmeter-art.zip
 
-                echo 'finaliza el unzip y empieza la instalacion de jmeter'
-                if [ ! -d ./apache-jmeter-5.5 ]; then
-                  wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz && \
-                  tar -zxvf apache-jmeter-5.5.tgz && rm apache-jmeter-5.5.tgz && \
-                  PATH=$PATH:~/azagent/_work/1/drop-jmeter-test-suite-art/apache-jmeter-5.5/bin/
-                fi;
+#                 echo 'finaliza el unzip y empieza la instalacion de jmeter'
+#                 if [ ! -d ./apache-jmeter-5.5 ]; then
+#                   wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz && \
+#                   tar -zxvf apache-jmeter-5.5.tgz && rm apache-jmeter-5.5.tgz && \
+#                   PATH=$PATH:~/azagent/_work/1/drop-jmeter-test-suite-art/apache-jmeter-5.5/bin/
+#                 fi;
                 
                 
-                echo 'chequear el '
-                pwd
+#                 echo 'chequear el '
+#                 pwd
                 
-                if [ -f ./myresult.csv ]; then
-                  rm ./myresult.csv
-                fi;
+#                 if [ -f ./myresult.csv ]; then
+#                   rm ./myresult.csv
+#                 fi;
 
-                if [ -d ./here/ ];  then
-                  rm -rf ./here/
-                fi;
-                echo '-------------------------------------------------------------------------------'
-                echo '--                         Starting Jmeter Test                              --'
-                echo '-------------------------------------------------------------------------------'
-                echo ' '
-                ./apache-jmeter-5.5/bin/jmeter -n -t ./Starter.jmx -l myresult.csv -j logfile -e -o ./here/
+#                 if [ -d ./here/ ];  then
+#                   rm -rf ./here/
+#                 fi;
+#                 echo '-------------------------------------------------------------------------------'
+#                 echo '--                         Starting Jmeter Test                              --'
+#                 echo '-------------------------------------------------------------------------------'
+#                 echo ' '
+#                 ./apache-jmeter-5.5/bin/jmeter -n -t ./Starter.jmx -l myresult.csv -j logfile -e -o ./here/
     
         
-          - task: Bash@3
-            displayName: Selenium Test
-            inputs:
-              targetType: 'inline'
-              script: |
-                #! /bin/bash
-                sudo apt-get install python3-pip -y
-                sudo apt-get install -y chromium-browser
-                pip3 install -U selenium
-                cd ~/azagent/_work/1/drop-selenium-test-suite-art
-                unzip -o $(Build.BuildId)-selenium-art.zip
-                if [ ! -f chromedriver ]; then
-                  wget https://chromedriver.storage.googleapis.com/105.0.5195.52/chromedriver_linux64.zip && \
-                  unzip chromedriver_linux64.zip && rm chromedriver_linux64.zip
-                fi;
-                export PATH=$PATH:~/azagent/_work/1/drop-selenium-test-suite-art
-                echo '-------------------------------------------------------------------------------'
-                echo '--                       Starting Selenium Test                              --'
-                echo '-------------------------------------------------------------------------------'
-                echo ' '
-                python3 login.py
+#           - task: Bash@3
+#             displayName: Selenium Test
+#             inputs:
+#               targetType: 'inline'
+#               script: |
+#                 #! /bin/bash
+#                 sudo apt-get install python3-pip -y
+#                 sudo apt-get install -y chromium-browser
+#                 pip3 install -U selenium
+#                 cd ~/azagent/_work/1/drop-selenium-test-suite-art
+#                 unzip -o $(Build.BuildId)-selenium-art.zip
+#                 if [ ! -f chromedriver ]; then
+#                   wget https://chromedriver.storage.googleapis.com/105.0.5195.52/chromedriver_linux64.zip && \
+#                   unzip chromedriver_linux64.zip && rm chromedriver_linux64.zip
+#                 fi;
+#                 export PATH=$PATH:~/azagent/_work/1/drop-selenium-test-suite-art
+#                 echo '-------------------------------------------------------------------------------'
+#                 echo '--                       Starting Selenium Test                              --'
+#                 echo '-------------------------------------------------------------------------------'
+#                 echo ' '
+#                 python3 login.py
 
-- stage: Post_webapp
-  dependsOn: FakeRestAPI
-  condition: succeeded()
-  jobs:
-  - job: Post_webap
-    steps:
-      - task: CmdLine@2
-        displayName: Run Validation and Regression Tests post Deploy webApp
-        continueOnError: true
-        inputs:
-          script: |
-            #!/bin/bash
-            echo '-------------------------------------------------------------------------------'
-            echo '--        Starting post Postman Validation and Regression  Test              --'
-            echo '-------------------------------------------------------------------------------'
-            echo ' '
-            ls ./
-            newman run Validation2.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
-            newman run Regression2_test.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/regression_result.xml
-          workingDirectory: 'automatedtesting/postman/post_postman'
+# - stage: Post_webapp
+#   dependsOn: FakeRestAPI
+#   condition: succeeded()
+#   jobs:
+#   - job: Post_webap
+#     steps:
+#       - task: CmdLine@2
+#         displayName: Run Validation and Regression Tests post Deploy webApp
+#         continueOnError: true
+#         inputs:
+#           script: |
+#             #!/bin/bash
+#             echo '-------------------------------------------------------------------------------'
+#             echo '--        Starting post Postman Validation and Regression  Test              --'
+#             echo '-------------------------------------------------------------------------------'
+#             echo ' '
+#             ls ./
+#             newman run Validation2.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
+#             newman run Regression2_test.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/regression_result.xml
+#           workingDirectory: 'automatedtesting/postman/post_postman'
 
 
      
 
-      - task: PublishTestResults@2 
-        displayName: Publicar los resultados de validacion de Postman
-        inputs:
-          testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
-          testResultsFiles: '**/*.xml' 
-          searchFolder: 'automatedtesting/postman/post_postman/result/'
-          mergeTestResults: true # Optional
-          #failTaskOnFailedTests: false # Optional
-          testRunTitle: Postman Test
-          buildPlatform: # Optional
-          #buildConfiguration: # Optional
-          #publishRunAttachments: true # Optional
+#       - task: PublishTestResults@2 
+#         displayName: Publicar los resultados de validacion de Postman
+#         inputs:
+#           testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+#           testResultsFiles: '**/*.xml' 
+#           searchFolder: 'automatedtesting/postman/post_postman/result/'
+#           mergeTestResults: true # Optional
+#           #failTaskOnFailedTests: false # Optional
+#           testRunTitle: Postman Test
+#           buildPlatform: # Optional
+#           #buildConfiguration: # Optional
+#           #publishRunAttachments: true # Optional
 
     
 # echo '-------------------------------------------------------------------------------'

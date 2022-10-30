@@ -25,9 +25,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_all_elements_located
+
 # from selenium.webdriver.chrome.options import Options as ChromeOptions
-
-
+# driver = webdriver.Firefox(options=options, service=service)
 # Start the browser and login with standard_user
 # def login(user, password):
 def login(user,password):
@@ -36,6 +36,7 @@ def login(user,password):
     options = ChromeOptions()
     options.add_argument("--headless") 
     driver = webdriver.Chrome(options=options)
+    # driver = webdriver.Chrome()
     # driver = webdriver.Firefox()
     url =  'https://www.saucedemo.com'
     # url = 'http://automationpractice.com/index.php'
