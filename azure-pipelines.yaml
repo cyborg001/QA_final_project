@@ -152,7 +152,7 @@ stages:
   - deployment: FakeRestAPI
     
     pool: 
-      name: myAgentPool
+      name: 'ubuntu-latest'
     environment: 'TEST'
     strategy:
       runOnce:
