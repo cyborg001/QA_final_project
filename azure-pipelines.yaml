@@ -151,8 +151,8 @@ stages:
   
   - deployment: FakeRestAPI
     
-    pool: 
-      name: 'ubuntu-latest'
+    # pool: 
+    #   name: 'ubuntu-latest'
     environment: 'TEST'
     strategy:
       runOnce:
