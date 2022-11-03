@@ -14,25 +14,25 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
 
-    - task: DownloadSecureFile@1
-      name: mysecfile
-      displayName: 'Download ssh keys'
-      inputs:
-        secureFile: 'mykeys'
+    # - task: DownloadSecureFile@1
+    #   name: mysecfile
+    #   displayName: 'Download ssh keys'
+    #   inputs:
+    #     secureFile: 'mykeys'
 
-    - task: Bash@3
-      displayName: Installing Terraform
-      inputs:
-        targetType: 'inline'
-        script: |
-          #!/bin/bash
-          echo 'Instalando Terraform'
-          sudo snap install terraform --classic
-          cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
-          echo '$(System.DefaultWorkingDirectory)'
-          terraform init && terraform plan -out=myplan
-          terraform apply myplan
-#         #  -auto-approve
+#     - task: Bash@3
+#       displayName: Installing Terraform
+#       inputs:
+#         targetType: 'inline'
+#         script: |
+#           #!/bin/bash
+#           echo 'Instalando Terraform'
+#           sudo snap install terraform --classic
+#           cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
+#           echo '$(System.DefaultWorkingDirectory)'
+#           terraform init && terraform plan -out=myplan
+#           terraform apply myplan
+# #         #  -auto-approve
 #         # -auto-approve permite que el pipeline se ejecute sin interaccion
 
 
@@ -43,11 +43,11 @@ stages:
     #     script: |
     #       echo '$(mypubkey)'
 
-    - task: InstallSSHKey@0
-      inputs:
-        knownHostsEntry: '$(knowHost)'
-        sshPublicKey: '$(mypubkey)'
-        sshKeySecureFile: 'mykeys' # ojo para que funcione este archivo debe ser anadido a la libreria como secure file en el portal de azure devops
+    # - task: InstallSSHKey@0
+    #   inputs:
+    #     knownHostsEntry: '$(knowHost)'
+    #     sshPublicKey: '$(mypubkey)'
+    #     sshKeySecureFile: 'mykeys' # ojo para que funcione este archivo debe ser anadido a la libreria como secure file en el portal de azure devops
 
 
 #         # para acceder a la vm desde consola se accede con el siguiente comando: ssh -i mykeys carlos@20.168.234.193
@@ -144,27 +144,27 @@ stages:
       artifact: drop-postman-test-suite-art
     
 
-- stage: FakeRestAPI
-  dependsOn: Build
-  condition: succeededOrFailed()
-  jobs:
+# - stage: FakeRestAPI
+#   dependsOn: Build
+#   condition: succeededOrFailed()
+#   jobs:
   
-  - deployment: FakeRestAPI
+#   - deployment: FakeRestAPI
     
-    pool: 
-      vmImage: 'ubuntu-latest'
-    environment: 'TEST'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App'
-            inputs:
-              appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
-              azureSubscription: sc_final_project #este es el service conecction que se crea en azure devops
-              appType: webApp
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+#     pool: 
+#       vmImage: 'ubuntu-latest'
+#     environment: 'TEST'
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: AzureWebApp@1
+#             displayName: 'Deploy Azure Web App'
+#             inputs:
+#               appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
+#               azureSubscription: sc_final_project #este es el service conecction que se crea en azure devops
+#               appType: webApp
+#               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
 
 
@@ -276,8 +276,8 @@ stages:
             echo '-------------------------------------------------------------------------------'
             echo ' '
             ls ./
-            newman run Validation.json -e post_env.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
-            newman run Regresion.json -e post_env.json --reporters junit --reporter-junit-export ./result/regression_result.xml
+            newman run Validation.json -e ./post_env.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
+            newman run Regresion.json -e ./post_env.json --reporters junit --reporter-junit-export ./result/regression_result.xml
           workingDirectory: 'automatedtesting/postman/post_postman'
 
 
