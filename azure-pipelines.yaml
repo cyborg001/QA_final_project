@@ -151,27 +151,7 @@ stages:
   
   - deployment: FakeRestAPI
     
-    # pool: 
-    #   name: 'ubuntu-latest'
-    environment: 'TEST'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App'
-            inputs:
-              appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
-              azureSubscription: sc_final_project #este es el service conecction que se crea en azure devops
-              appType: webApp
-              package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-
-
-
-  - deployment: FakeRestAPI2
-    dependsOn: FakeRestAPI
-    condition: Failed()
-    pool:
+    pool: 
       vmImage: 'ubuntu-latest'
     environment: 'TEST'
     strategy:
@@ -185,6 +165,26 @@ stages:
               azureSubscription: sc_final_project #este es el service conecction que se crea en azure devops
               appType: webApp
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
+
+
+
+  # - deployment: FakeRestAPI2
+  #   dependsOn: FakeRestAPI
+  #   condition: Failed()
+  #   pool:
+  #     vmImage: 'ubuntu-latest'
+  #   environment: 'TEST'
+  #   strategy:
+  #     runOnce:
+  #       deploy:
+  #         steps:
+  #         - task: AzureWebApp@1
+  #           displayName: 'Deploy Azure Web App'
+  #           inputs:
+  #             appName: "$(appname)" # nombre del app-service o app-service plan si son iguales
+  #             azureSubscription: sc_final_project #este es el service conecction que se crea en azure devops
+  #             appType: webApp
+  #             package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
 
   - deployment: VMDeploy
     displayName: deploy to virtual machine
@@ -259,42 +259,42 @@ stages:
                 echo ' '
                 python3 login.py
 
-# - stage: Post_webapp
-#   dependsOn: FakeRestAPI
-#   condition: succeeded()
-#   jobs:
-#   - job: Post_webap
-#     steps:
-#       - task: CmdLine@2
-#         displayName: Run Validation and Regression Tests post Deploy webApp
-#         continueOnError: true
-#         inputs:
-#           script: |
-#             #!/bin/bash
-#             echo '-------------------------------------------------------------------------------'
-#             echo '--        Starting post Postman Validation and Regression  Test              --'
-#             echo '-------------------------------------------------------------------------------'
-#             echo ' '
-#             ls ./
-#             newman run Validation2.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
-#             newman run Regression2_test.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/regression_result.xml
-#           workingDirectory: 'automatedtesting/postman/post_postman'
+- stage: Post_webapp
+  dependsOn: FakeRestAPI
+  condition: succeeded()
+  jobs:
+  - job: Post_webap
+    steps:
+      - task: CmdLine@2
+        displayName: Run Validation and Regression Tests post Deploy webApp
+        continueOnError: true
+        inputs:
+          script: |
+            #!/bin/bash
+            echo '-------------------------------------------------------------------------------'
+            echo '--        Starting post Postman Validation and Regression  Test              --'
+            echo '-------------------------------------------------------------------------------'
+            echo ' '
+            ls ./
+            newman run Validation2.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
+            newman run Regression2_test.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/regression_result.xml
+          workingDirectory: 'automatedtesting/postman/post_postman'
 
 
      
 
-#       - task: PublishTestResults@2 
-#         displayName: Publicar los resultados de validacion de Postman
-#         inputs:
-#           testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
-#           testResultsFiles: '**/*.xml' 
-#           searchFolder: 'automatedtesting/postman/post_postman/result/'
-#           mergeTestResults: true # Optional
-#           #failTaskOnFailedTests: false # Optional
-#           testRunTitle: Postman Test
-#           buildPlatform: # Optional
-#           #buildConfiguration: # Optional
-#           #publishRunAttachments: true # Optional
+      - task: PublishTestResults@2 
+        displayName: Publicar los resultados de validacion de Postman
+        inputs:
+          testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+          testResultsFiles: '**/*.xml' 
+          searchFolder: 'automatedtesting/postman/post_postman/result/'
+          mergeTestResults: true # Optional
+          #failTaskOnFailedTests: false # Optional
+          testRunTitle: Postman Test
+          buildPlatform: # Optional
+          #buildConfiguration: # Optional
+          #publishRunAttachments: true # Optional
 
     
 # echo '-------------------------------------------------------------------------------'
