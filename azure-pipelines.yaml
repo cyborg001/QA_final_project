@@ -276,8 +276,8 @@ stages:
             echo '-------------------------------------------------------------------------------'
             echo ' '
             ls ./
-            newman run Validation2.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
-            newman run Regression2_test.json -e Env_Copy.json --reporters junit --reporter-junit-export ./result/regression_result.xml
+            newman run Validation.json -e post_env.json --reporters junit --reporter-junit-export ./result/validation_result.xml 
+            newman run Regresion.json -e post_env.json --reporters junit --reporter-junit-export ./result/regression_result.xml
           workingDirectory: 'automatedtesting/postman/post_postman'
 
 
