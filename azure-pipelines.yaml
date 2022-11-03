@@ -220,6 +220,7 @@ stages:
                 echo '-------------------------------------------------------------------------------'
                 echo ' '
                 ./apache-jmeter-5.5/bin/jmeter -n -t ./Starter.jmx -l myresult.csv -j logfile -e -o ./here/
+                tar -cvf jmeter_resul.tar ./here/
     
         
           - task: Bash@3
