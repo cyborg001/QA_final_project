@@ -260,8 +260,8 @@ stages:
                 python3 login.py
 
 - stage: Post_webapp
-  dependsOn: FakeRestAPI
-  condition: succeeded()
+  # dependsOn: FakeRestAPI
+  # condition: succeeded()
   jobs:
   - job: Post_webap
     steps:
