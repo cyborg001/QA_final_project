@@ -12,7 +12,7 @@ terraform {
     storage_account_name = "tfstate1978"
     container_name       = "tfstate"
     key                  = "key1"
-    access_key           = "0YghGWVdsneBUs75P1nkMWPk89ElUSFWBfaBlA78S7KsVEzHa7PcIKU8oScHY7HmOZ8YMOLh2bjM+AStLgphtA=="
+    access_key           = "d2fSuuNZ5xXA4sRZw/dXX3LVSwikzYTDXKuX/Uyl2EBFt2SMfIKgUG1C9Z3W7iTyVqxhgrv6u8DY+ASthM3lTg=="
     
   }
 }
