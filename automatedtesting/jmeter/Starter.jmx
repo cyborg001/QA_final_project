@@ -88,7 +88,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">C:\Users\DELL\projects\proyecto_final_udacity\automatedtesting\jmeter\result\result.csv</stringProp>
+          <stringProp name="filename">C:\Users\DELL\udacity-projects-devops\QA_final_project\automatedtesting\jmeter\result\result.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
@@ -125,7 +125,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">C:\Users\DELL\projects\proyecto_final_udacity\automatedtesting\jmeter\result\result.csv</stringProp>
+          <stringProp name="filename">C:\Users\DELL\udacity-projects-devops\QA_final_project\automatedtesting\jmeter\result\result.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
@@ -208,7 +208,7 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\Users\DELL\projects\proyecto_final_udacity\automatedtesting\jmeter\result\estress_result.csv</stringProp>
+            <stringProp name="filename">C:\Users\DELL\udacity-projects-devops\QA_final_project\automatedtesting\jmeter\result\estress_result.csv</stringProp>
           </ResultCollector>
           <hashTree/>
           <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
@@ -245,7 +245,7 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\Users\DELL\projects\proyecto_final_udacity\automatedtesting\jmeter\result\estress_result.csv</stringProp>
+            <stringProp name="filename">C:\Users\DELL\udacity-projects-devops\QA_final_project\automatedtesting\jmeter\result\estress_result.csv</stringProp>
           </ResultCollector>
           <hashTree/>
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">

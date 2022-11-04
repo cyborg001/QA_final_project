@@ -185,8 +185,6 @@ stages:
               targetType: 'inline'
               script: |
                 #! /bin/bash
-                echo $(System.DefaultWorkingDirectory)
-                ls -l
                 sudo timedatectl set-timezone Etc/GMT-4
                 sudo apt-get upgrade -y
                 sudo add-apt-repository universe
@@ -221,7 +219,7 @@ stages:
                 echo '-------------------------------------------------------------------------------'
                 echo ' '
                 ./apache-jmeter-5.5/bin/jmeter -n -t ./Starter.jmx -l myresult.csv -j logfile -e -o ./here/
-                tar -cvf jmeter_resul.tar ./here/ 
+           
           - task: Bash@3
             displayName: Selenium Test
             inputs:
