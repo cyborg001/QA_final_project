@@ -80,7 +80,8 @@ stages:
           echo '-------------------------------------------------------------------------------'
           echo ' '
           ls ./
-          newman run StarterAPIS.json -e Starter_Apis.postman_environment.json --reporters junit --reporter-junit-export ./result/result.xml
+          newman run StarterAPIS.json -e Starter_Apis.postman_environment.json --reporters junit --reporter-junit-export ./result/result.xml \
+          --delay 1000
         workingDirectory: 'automatedtesting/postman'
 
     - task: PublishTestResults@2 
