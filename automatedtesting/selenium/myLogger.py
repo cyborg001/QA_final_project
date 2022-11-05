@@ -7,22 +7,22 @@ class Logger:
     # logging.basicConfig()
     logging.root.setLevel(logging.INFO)
     # logging.basicConfig(level=logging.NOTSET)
-    logging.basicConfig(filename='mylog.txt')
+    # logging.basicConfig(filename='mylog.txt')
     logger = logging.getLogger('Selenium Test')
-    # logFile = 'mylog.txt'
-    # fileHandler = logging.FileHandler(logFile)
-    # logger.addHandler(fileHandler)
+    logFile = 'mylog.txt'
+    fileHandler = logging.FileHandler(logFile)
+    logger.addHandler(fileHandler)
 
-    # formato = "%(asctime)s:%(levelname)s:%(name)s:%(message)s"
-    # formatter = logging.Formatter(formato)
-    # fileHandler.setFormatter(formatter)
+    formato = "%(asctime)s:%(levelname)s:%(name)s:%(message)s"
+    formatter = logging.Formatter(formato)
+    fileHandler.setFormatter(formatter)
 
     def setLog(self,level,message):
-        # f'''Accept 2 arguments: 
-        # level: is the level of the logger ex. "debug"
-        # message: is some output from the app
+        f'''Accept 2 arguments: 
+        level: is the level of the logger ex. "debug"
+        message: is some output from the app
         
-        # create the log and send it to the {self.logFile} '''
+        create the log and send it to the {self.logFile} '''
         if level == 'debug':
             self.logger.debug(message)
         elif level == 'info':
