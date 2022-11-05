@@ -5,7 +5,8 @@
 In this seccion the project will aprovision the infraestructure. This
 infraestructure will have:
 - A VM 
-- Service App
+- A Service App
+
 Obviously this will create a series of resources need for this two resources
 be functional, for example, a service plan, network, public ip, custom image,
 and more.
