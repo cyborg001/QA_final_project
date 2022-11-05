@@ -20,18 +20,18 @@ stages:
       inputs:
         secureFile: 'mykeys'
 
-    - task: Bash@3
-      displayName: Installing Terraform
-      inputs:
-        targetType: 'inline'
-        script: |
-          #!/bin/bash
-          echo 'Instalando Terraform'
-          sudo snap install terraform --classic
-          cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
-          echo '$(System.DefaultWorkingDirectory)'
-          terraform init && terraform plan -out=myplan
-          terraform apply myplan
+    # - task: Bash@3
+    #   displayName: Installing Terraform
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       #!/bin/bash
+    #       echo 'Instalando Terraform'
+    #       sudo snap install terraform --classic
+    #       cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
+    #       echo '$(System.DefaultWorkingDirectory)'
+    #       terraform init && terraform plan -out=myplan
+    #       terraform apply myplan
 # #         #  -auto-approve
 #         # -auto-approve permite que el pipeline se ejecute sin interaccion
 
@@ -280,9 +280,3 @@ stages:
           #buildConfiguration: # Optional
           #publishRunAttachments: true # Optional
 
-    
-# echo '-------------------------------------------------------------------------------'
-# echo '--                Starting post Postman Regression Test                      --'
-# echo '-------------------------------------------------------------------------------'
-# echo ' '
-# ls ./
