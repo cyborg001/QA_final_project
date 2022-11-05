@@ -13,11 +13,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.test(\"Get All Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"var jsonData = pm.response.json();\r",
-							"console.log(jsonData)\r",
+							"\r",
 							"\r",
 							"pm.test(\"GEt all employee validation test\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -52,9 +51,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Get employee validation Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
 							"pm.test(\"Get employee validation employee_name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.data.employee_name).to.eql(\"Garrett Winters\");\r",
@@ -206,7 +202,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Your test name\", function () {\r",
+							"pm.test(\"Delete employee validation\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"Successfully! Record has been deleted\");\r",
 							"});"
