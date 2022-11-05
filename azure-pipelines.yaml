@@ -79,8 +79,7 @@ stages:
           echo '--                       Starting Postman pre Test                           --'
           echo '-------------------------------------------------------------------------------'
           echo ' '
-          newman run StarterAPIS.json -e Starter_Apis.postman_environment.json --reporters junit --reporter-junit-export \
-           ./result/result.xml
+          newman run StarterAPIS.json -e Starter_Apis.postman_environment.json --reporters junit --reporter-junit-export ./result/result.xml
         workingDirectory: 'automatedtesting/postman'
 
     - task: PublishTestResults@2 
