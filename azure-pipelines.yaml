@@ -69,10 +69,11 @@ stages:
           echo $(System.DefaultWorkingDirectory)
         workingDirectory: $(System.DefaultWorkingDirectory)
 
-    - task: CmdLine@2
+    - task: Bash@3
       displayName: Run Regression Tests
       continueOnError: true
       inputs:
+        targetType: 'inline'
         script: |
           #!/bin/bash
           echo '-------------------------------------------------------------------------------'
