@@ -46,6 +46,41 @@
 			"response": []
 		},
 		{
+			"name": "Get employee validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get employee validation Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Get employee validation employee_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.employee_name).to.eql(\"Garrett Winters\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/employee/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employee",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Employee validation",
 			"event": [
 				{
@@ -84,6 +119,39 @@
 					],
 					"path": [
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get employee regression",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Get employee: ensure employee has been created\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Successfully! Record has been fetched.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/employee/{{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employee",
+						"{{id}}"
 					]
 				}
 			},
@@ -158,74 +226,6 @@
 					"path": [
 						"delete",
 						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get employee regression",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();\r",
-							"pm.test(\"Get employee: ensure employee has been created\", function () {\r",
-							"    pm.expect(jsonData.message).to.eql(\"Successfully! Record has been fetched.\");\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/employee/{{id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"employee",
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get employee validation",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Get employee validation Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Get employee validation employee_name\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.employee_name).to.eql(\"Garrett Winters\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/employee/2",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"employee",
-						"2"
 					]
 				}
 			},
