@@ -20,18 +20,18 @@ stages:
       inputs:
         secureFile: 'mykeys'
 
-    - task: Bash@3
-      displayName: Installing Terraform
-      inputs:
-        targetType: 'inline'
-        script: |
-          #!/bin/bash
-          echo 'Instalando Terraform'
-          sudo snap install terraform --classic
-          cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
-          echo '$(System.DefaultWorkingDirectory)'
-          terraform init && terraform plan -out=myplan
-          terraform apply myplan
+    # - task: Bash@3
+    #   displayName: Installing Terraform
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       #!/bin/bash
+    #       echo 'Instalando Terraform'
+    #       sudo snap install terraform --classic
+    #       cd '$(System.DefaultWorkingDirectory)'/terraform/environments/test
+    #       echo '$(System.DefaultWorkingDirectory)'
+    #       terraform init && terraform plan -out=myplan
+    #       terraform apply myplan
 # #         #  -auto-approve
 #         # -auto-approve permite que el pipeline se ejecute sin interaccion
 
@@ -79,8 +79,8 @@ stages:
           echo '--                       Starting Postman pre Test                           --'
           echo '-------------------------------------------------------------------------------'
           echo ' '
-          ls ./
-          newman run StarterAPIS.json -e Starter_Apis.postman_environment.json --reporters junit --reporter-junit-export ./result/result.xml --delay-request 4000
+          newman run StarterAPIS.json -e Starter_Apis.postman_environment.json --reporters junit --reporter-junit-export \
+           ./result/result.xml --delay-request 4000 -n 2
         workingDirectory: 'automatedtesting/postman'
 
     - task: PublishTestResults@2 
