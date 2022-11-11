@@ -26,4 +26,4 @@ deployment to test our webapp aplication.
 # RUN AUTOMATECLY
 
 After we set the enviroment and infraestructure locally we can run the pipeline
-and it will create the infraestructure, and run the 3 stages automatecly
+and it will create the infraestructure, and run the 3 stages automatically
