@@ -23,7 +23,7 @@ and will deploy some test in the environemt: a selenium test and a jmeter test.
 in this stage we are going to run regression and validation test post webapp
 deployment to test our webapp aplication.
 
-# RUN AUTOMATECLY
+# RUN AUTOMATICALLY
 
 After we set the enviroment and infraestructure locally we can run the pipeline
-and it will create the infraestructure, and run the 3 stages automatically
+and it will create the infraestructure, and run the 3 stages automatically.
